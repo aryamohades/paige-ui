@@ -1,12 +1,12 @@
 /**
  * Combine all reducers in this file and export the combined reducers.
  */
-
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
+import formReducer from 'containers/Form/reducers';
 
 /*
  * routeReducer
@@ -43,6 +43,7 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
+    form: formReducer,
     ...injectedReducers,
   });
 }

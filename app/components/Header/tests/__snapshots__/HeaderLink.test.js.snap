@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderLink /> should match the snapshot 1`] = `
+<a
+  className="HeaderLink__StyledLink-kTMJic dLlKZd"
+  href="/"
+  onClick={[Function]}
+>
+  <span>
+    test
+  </span>
+</a>
+`;

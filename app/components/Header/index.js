@@ -1,31 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import A from './A';
-import Img from './Img';
 import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
-import messages from './messages';
+import HeaderBrand from './HeaderBrand';
+import HeaderItems from './HeaderItems';
 
-/* eslint-disable react/prefer-stateless-function */
-class Header extends React.Component {
-  render() {
-    return (
+const Header = ({ brandText, left, right }) => (
+  <div>
+    <NavBar>
       <div>
-        <A href="https://twitter.com/mxstbr">
-          <Img src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        <NavBar>
-          <HeaderLink to="/">
-            <span>{messages.home}</span>
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <span>{messages.features}</span>
-          </HeaderLink>
-        </NavBar>
+        {brandText && <HeaderBrand text={brandText} />}
+        {left && <HeaderItems items={left} />}
       </div>
-    );
-  }
-}
+      {right && (
+        <div>
+          <HeaderItems items={right} />
+        </div>
+      )}
+    </NavBar>
+  </div>
+);
+
+Header.propTypes = {
+  brandText: PropTypes.string,
+  left: PropTypes.array,
+  right: PropTypes.array,
+};
 
 export default Header;

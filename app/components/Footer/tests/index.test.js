@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import A from 'components/A';
 import Footer from '../index';
+import messages from '../messages';
 
 describe('<Footer />', () => {
   it('should render the copyright notice', () => {
@@ -10,7 +11,7 @@ describe('<Footer />', () => {
     expect(
       renderedComponent.contains(
         <section>
-          <div>{ 'License information' }</div>
+          <span>{messages.license}</span>
         </section>,
       ),
     ).toBe(true);
