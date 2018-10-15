@@ -3,33 +3,33 @@ import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import HeaderLinks from '../HeaderLinks';
-import HeaderLink from '../HeaderLink';
+import HeaderItems from '../HeaderItems';
+import HeaderItem from '../HeaderItem';
 
-describe('<HeaderLinks />', () => {
+describe('<HeaderItems />', () => {
   it('should match the snapshot', () => {
-    const links = [{ id: 1, to: '/', text: 'one' }];
+    const items = [{ id: 1, to: '/', text: 'one' }];
     const renderedComponent = renderer
       .create(
         <Router>
-          <HeaderLinks links={links} />
+          <HeaderItems items={items} />
         </Router>,
       )
       .toJSON();
     expect(renderedComponent).toMatchSnapshot();
   });
 
-  it('should be empty if no links are passed', () => {
+  it('should be empty if no items are passed', () => {
     const renderedComponent = mount(
       <Router>
-        <HeaderLinks />
+        <HeaderItems />
       </Router>,
     );
-    expect(renderedComponent.find(HeaderLink).length).toEqual(0);
+    expect(renderedComponent.find(HeaderItem).length).toEqual(0);
   });
 
-  it('should render 3 <HeaderLink /> components', () => {
-    const links = [
+  it('should render 3 <HeaderItem /> components', () => {
+    const items = [
       { id: 1, to: '/', text: 'one' },
       { id: 2, to: '/', text: 'two' },
       { id: 3, to: '/', text: 'three' },
@@ -37,35 +37,35 @@ describe('<HeaderLinks />', () => {
 
     const renderedComponent = mount(
       <Router>
-        <HeaderLinks links={links} />
+        <HeaderItems items={items} />
       </Router>,
     );
-    expect(renderedComponent.find(HeaderLink)).toHaveLength(3);
+    expect(renderedComponent.find(HeaderItem)).toHaveLength(3);
   });
 
-  it('should pass link props to rendered component', () => {
-    const links = [
+  it('should pass item props to rendered component', () => {
+    const items = [
       { id: 1, to: '/', text: 'one' },
       { id: 2, to: '/', text: 'two' },
     ];
 
     const renderedComponent = mount(
       <Router>
-        <HeaderLinks links={links} />
+        <HeaderItems items={items} />
       </Router>,
     );
 
     expect(
       renderedComponent
-        .find(HeaderLink)
+        .find(HeaderItem)
         .at(0)
         .prop('text'),
-    ).toBe(links[0].text);
+    ).toBe(items[0].text);
     expect(
       renderedComponent
-        .find(HeaderLink)
+        .find(HeaderItem)
         .at(1)
         .prop('text'),
-    ).toBe(links[1].text);
+    ).toBe(items[1].text);
   });
 });

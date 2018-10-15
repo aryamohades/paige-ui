@@ -11,9 +11,14 @@
 
 export const API_BASE =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api'
-    : 'http://localhost:3000/api';
+    ? 'http://localhost:8000/api'
+    : 'http://localhost:8000/api';
 
+// Reducer keys
+export const AUTH_REDUCER_KEY = 'auth';
+
+// Action types
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const LOGIN_SUCCESS = 'boilerplate/App/LOGIN_SUCCESS';

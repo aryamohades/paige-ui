@@ -12,7 +12,14 @@
 
 import { fromJS } from 'immutable';
 
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+import { getItemFromStorage } from 'utils/storage';
+import {
+  AUTH_REDUCER_KEY,
+  LOGIN_SUCCESS,
+  LOAD_REPOS_SUCCESS,
+  LOAD_REPOS,
+  LOAD_REPOS_ERROR,
+} from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -23,12 +30,24 @@ const initialState = fromJS({
     repositories: false,
   },
   auth: {
-    isAuthenticated: false,
+    token: getItemFromStorage('token'),
+    isAuthenticated: getItemFromStorage('token') !== null,
+    username: getItemFromStorage('username'),
   },
 });
 
 function appReducer(state = initialState, action) {
-  switch (action.type) {
+  const { type } = action;
+
+  switch (type) {
+    case LOGIN_SUCCESS: {
+      const { token, username } = action;
+
+      return state
+        .setIn([AUTH_REDUCER_KEY, 'token'], token)
+        .setIn([AUTH_REDUCER_KEY, 'isAuthenticated'], true)
+        .setIn([AUTH_REDUCER_KEY, 'username'], username);
+    }
     case LOAD_REPOS:
       return state
         .set('loading', true)

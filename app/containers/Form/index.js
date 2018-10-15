@@ -4,8 +4,16 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { fromJS } from 'immutable';
 
-import { initializeForm, setFormFieldErrors } from './actions';
-import { makeSelectFormFieldValues } from './selectors';
+import {
+  clearFormErrors,
+  initializeForm,
+  setFormFieldErrors,
+  submitForm,
+} from './actions';
+import {
+  makeSelectFormFieldValues,
+  makeSelectIsFormPending,
+} from './selectors';
 
 const validateFields = (fields, values) => {
   let isValid = true;
@@ -37,7 +45,10 @@ const validateFields = (fields, values) => {
   return isValid ? null : fromJS(errors);
 };
 
-const createForm = (WrappedComponent, { fields, formKey }) => {
+const createForm = (
+  WrappedComponent,
+  { endpoint, fields, formKey, onError, onSuccess },
+) => {
   class Component extends React.PureComponent {
     componentWillMount() {
       const { init } = this.props;
@@ -46,26 +57,48 @@ const createForm = (WrappedComponent, { fields, formKey }) => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <form onSubmit={this.onSubmitForm}>
+          <WrappedComponent {...this.props} />
+        </form>
+      );
     }
+
+    onSubmitForm = evt => {
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+
+      const { clearErrors, error, submit, values } = this.props;
+
+      const errors = validateFields(fields, values);
+
+      if (errors) {
+        error(errors);
+      } else {
+        clearErrors();
+        submit(values);
+      }
+    };
   }
 
   Component.propTypes = {
+    clearErrors: PropTypes.func,
     error: PropTypes.func,
     init: PropTypes.func,
+    submit: PropTypes.func,
     values: PropTypes.object,
   };
 
   const mapStateToProps = createStructuredSelector({
+    isPending: makeSelectIsFormPending(formKey),
     values: makeSelectFormFieldValues(formKey),
   });
 
   const mapDispatchToProps = dispatch => ({
+    clearErrors: () => dispatch(clearFormErrors(formKey)),
     init: () => dispatch(initializeForm(formKey, fields)),
     error: errors => dispatch(setFormFieldErrors(formKey, errors)),
-    submit: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    },
+    submit: data =>
+      dispatch(submitForm(formKey, endpoint, data, onSuccess, onError)),
   });
 
   return connect(

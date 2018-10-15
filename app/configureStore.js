@@ -6,15 +6,23 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+
+import formSaga from 'containers/Form/saga';
+import { localStorageMiddleware } from './utils/storage';
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
-  // Create the store with two middlewares
+  // Create the store with middleware
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [sagaMiddleware, routerMiddleware(history)];
+  // 3. localStorageMiddleware: Syncs redux state to local storage
+  const middlewares = [
+    sagaMiddleware,
+    routerMiddleware(history),
+    localStorageMiddleware,
+  ];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
@@ -50,6 +58,9 @@ export default function configureStore(initialState = {}, history) {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }
+
+  // Start sagas
+  sagaMiddleware.run(formSaga);
 
   return store;
 }

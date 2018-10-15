@@ -4,7 +4,11 @@
 
 import { createSelector } from 'reselect';
 
-import { VALUES_REDUCER_KEY, ERRORS_REDUCER_KEY } from './constants';
+import {
+  ERRORS_REDUCER_KEY,
+  PENDING_REDUCER_KEY,
+  VALUES_REDUCER_KEY,
+} from './constants';
 
 const selectForm = state => state.get('form');
 
@@ -23,9 +27,15 @@ const makeSelectFormFieldError = (formKey, formField) =>
     formState.getIn([formKey, ERRORS_REDUCER_KEY, formField]),
   );
 
+const makeSelectIsFormPending = formKey =>
+  createSelector(selectForm, formState =>
+    formState.getIn([formKey, PENDING_REDUCER_KEY]),
+  );
+
 export {
   selectForm,
   makeSelectFormFieldValues,
   makeSelectFormFieldValue,
   makeSelectFormFieldError,
+  makeSelectIsFormPending,
 };

@@ -3,15 +3,15 @@ import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import HeaderLink from '../HeaderLink';
+import HeaderItem from '../HeaderItem';
 
-describe('<HeaderLink />', () => {
+describe('<HeaderItem />', () => {
   it('should match the snapshot', () => {
     const props = { text: 'test', to: '/' };
     const renderedComponent = renderer
       .create(
         <Router>
-          <HeaderLink {...props} />
+          <HeaderItem {...props} />
         </Router>,
       )
       .toJSON();
@@ -22,9 +22,9 @@ describe('<HeaderLink />', () => {
     const props = { text: 'test', to: '/' };
     const renderedComponent = mount(
       <Router>
-        <HeaderLink {...props} />
+        <HeaderItem {...props} />
       </Router>,
     );
-    expect(renderedComponent.find(HeaderLink).text()).toEqual(props.text);
+    expect(renderedComponent.find(HeaderItem).text()).toEqual(props.text);
   });
 });

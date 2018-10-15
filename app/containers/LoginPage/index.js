@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import createForm from 'containers/Form';
 import TextField from 'components/TextField';
 import { notEmpty } from 'containers/Form/validators';
-import { API_LOGIN } from './constants';
+import { API_LOGIN, LOGIN_SUCCESS } from './constants';
 
 const LoginPage = ({ location }) => {
-  const { from } = location.state || { from: { pathname: '/' } };
+  // @TODO: use isAuthenticated to determine whether to redirect using <Redirect /> component
+  const { from } = location.state || { from: { pathname: '/' } }; // eslint-disable-line no-unused-vars
 
   const usernameProps = {
     id: 'login-username-textfield',
@@ -28,12 +30,18 @@ const LoginPage = ({ location }) => {
       <h3>Login</h3>
       <TextField {...usernameProps} />
       <TextField {...passwordProps} />
+      <button type="submit">Login</button>
     </div>
   );
 };
 
+LoginPage.propTypes = {
+  location: PropTypes.object,
+};
+
 export default createForm(LoginPage, {
-  submit: API_LOGIN,
+  endpoint: API_LOGIN,
+  onSuccess: LOGIN_SUCCESS,
   formKey: 'login',
   fields: {
     username: {
