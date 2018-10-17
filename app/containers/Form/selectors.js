@@ -6,7 +6,7 @@ import { createSelector } from 'reselect';
 
 import {
   ERRORS_REDUCER_KEY,
-  PENDING_REDUCER_KEY,
+  SUBMITTING_REDUCER_KEY,
   VALUES_REDUCER_KEY,
 } from './constants';
 
@@ -27,9 +27,9 @@ const makeSelectFormFieldError = (formKey, formField) =>
     formState.getIn([formKey, ERRORS_REDUCER_KEY, formField]),
   );
 
-const makeSelectIsFormPending = formKey =>
+const makeSelectIsFormSubmitting = formKey =>
   createSelector(selectForm, formState =>
-    formState.getIn([formKey, PENDING_REDUCER_KEY]),
+    formState.getIn([formKey, SUBMITTING_REDUCER_KEY]),
   );
 
 export {
@@ -37,5 +37,5 @@ export {
   makeSelectFormFieldValues,
   makeSelectFormFieldValue,
   makeSelectFormFieldError,
-  makeSelectIsFormPending,
+  makeSelectIsFormSubmitting,
 };

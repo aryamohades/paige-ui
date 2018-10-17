@@ -152,12 +152,14 @@ npm manifest:
       "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
       "setupFiles": [
         "raf/polyfill",
-        "<rootDir>/internals/testing/enzyme-setup.js"
+        "<rootDir>/internals/testing/enzyme-setup.js",
+        "jest-localstorage-mock"
       ],
       "testRegex": "tests/.*\\.test\\.js$",
       "snapshotSerializers": [
         "enzyme-to-json/serializer"
-      ]
+      ],
+      "testURL": "http://localhost"
     },
     "dependencies": {
       "babel-polyfill": "6.26.0",
@@ -190,6 +192,7 @@ npm manifest:
       "sanitize.css": "4.1.0",
       "shortid": "^2.2.13",
       "styled-components": "3.3.2",
+      "validator": "^10.8.0",
       "warning": "4.0.1",
       "whatwg-fetch": "2.0.4"
     },
@@ -236,6 +239,7 @@ npm manifest:
       "image-webpack-loader": "4.3.1",
       "imports-loader": "0.8.0",
       "jest-cli": "23.1.0",
+      "jest-localstorage-mock": "^2.2.0",
       "jest-styled-components": "5.0.1",
       "lint-staged": "7.2.0",
       "ngrok": "3.0.1",
@@ -6079,6 +6083,10 @@ Lockfile:
     dependencies:
       pretty-format "^23.0.1"
   
+  jest-localstorage-mock@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/jest-localstorage-mock/-/jest-localstorage-mock-2.2.0.tgz#ce9a9de01dfdde2ad8aa08adf73acc7e5cc394cf"
+  
   jest-matcher-utils@^23.0.1:
     version "23.0.1"
     resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-23.0.1.tgz#0c6c0daedf9833c2a7f36236069efecb4c3f6e5f"
@@ -10578,6 +10586,10 @@ Lockfile:
       spdx-correct "^3.0.0"
       spdx-expression-parse "^3.0.0"
   
+  validator@^10.8.0:
+    version "10.8.0"
+    resolved "https://registry.yarnpkg.com/validator/-/validator-10.8.0.tgz#8acb15a5c39411cbc8ef2be0c98c2514da4410a7"
+  
   value-equal@^0.4.0:
     version "0.4.0"
     resolved "https://registry.yarnpkg.com/value-equal/-/value-equal-0.4.0.tgz#c5bdd2f54ee093c04839d71ce2e4758a6890abc7"
@@ -11041,7 +11053,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c npm run test:clean && npm run lint
+  Arguments: -c cross-env NODE_ENV=test jest --coverage
   Directory: /Users/taapesh/Desktop/chat/react-boilerplate
   Output:
   

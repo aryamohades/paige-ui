@@ -142,7 +142,8 @@
     "testRegex": "tests/.*\\.test\\.js$",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "testURL": "http://localhost"
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",

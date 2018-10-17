@@ -7,10 +7,10 @@ export const StyledLink = styled(Link)`
   ${linkStyle};
 `;
 
-export const StyledButton = styled(Link)`
+export const ButtonLink = styled(Link)`
   ${buttonStyle};
 `;
 
-export const StyledButtonPrimary = styled(Link)`
+export const ButtonLinkPrimary = styled(Link)`
   ${buttonStyle};
 `;

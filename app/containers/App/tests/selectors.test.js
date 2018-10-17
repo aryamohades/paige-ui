@@ -7,6 +7,7 @@ import {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
+  makeSelectIsAuthenticated,
 } from '../selectors';
 
 describe('selectGlobal', () => {
@@ -85,5 +86,19 @@ describe('makeSelectLocation', () => {
     expect(locationStateSelector(mockedState)).toEqual(
       route.get('location').toJS(),
     );
+  });
+});
+
+describe('makeSelectIsAuthenticated', () => {
+  const isAuthenticatedStateSelector = makeSelectIsAuthenticated();
+  it('should select isAuthenticated', () => {
+    const isAuthenticated = true;
+
+    const mockedState = fromJS({
+      global: {
+        auth: { isAuthenticated },
+      },
+    });
+    expect(isAuthenticatedStateSelector(mockedState)).toEqual(isAuthenticated);
   });
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import styled from 'styled-components';
 
 import {
   makeSelectFormFieldValue,
@@ -12,12 +11,16 @@ import { setFormFieldValue } from 'containers/Form/actions';
 import FormFieldError from 'components/FormFieldError';
 import Input from './Input';
 
-const InputContainer = styled.div`
-  margin-bottom: 20px;
-`;
-
-const TextField = ({ error, id, label, onInput, placeholder, type, value }) => (
-  <InputContainer>
+export const TextField = ({
+  error,
+  id,
+  label,
+  onInput,
+  placeholder,
+  type,
+  value,
+}) => (
+  <div>
     {label && <label htmlFor={id}>{label}</label>}
     <Input
       id={id}
@@ -26,8 +29,8 @@ const TextField = ({ error, id, label, onInput, placeholder, type, value }) => (
       value={value}
       onChange={onInput}
     />
-    {error && <FormFieldError error={error} />}
-  </InputContainer>
+    {error && <FormFieldError>{error}</FormFieldError>}
+  </div>
 );
 
 TextField.propTypes = {
@@ -46,12 +49,14 @@ TextField.defaultProps = {
   value: '',
 };
 
+/* istanbul ignore next */
 const mapStateToProps = (state, { formKey, formField }) =>
   createStructuredSelector({
     value: makeSelectFormFieldValue(formKey, formField),
     error: makeSelectFormFieldError(formKey, formField),
   });
 
+/* istanbul ignore next */
 const mapDispatchToProps = (dispatch, { formKey, formField, onChange }) => ({
   onInput: evt => {
     dispatch(setFormFieldValue(formKey, formField, evt.target.value));

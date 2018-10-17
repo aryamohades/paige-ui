@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectIsAuthenticated } from 'containers/App/selectors';
 import Header from 'components/Header';
 
-const AppHeader = ({ isAuthenticated }) => {
+export const AppHeader = ({ isAuthenticated }) => {
   const left = [
     {
       text: 'Technologies',
@@ -49,6 +49,7 @@ AppHeader.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
+/* istanbul ignore next */
 const mapStateToProps = createStructuredSelector({
   isAuthenticated: makeSelectIsAuthenticated(),
 });

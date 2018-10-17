@@ -41,7 +41,9 @@ function appReducer(state = initialState, action) {
 
   switch (type) {
     case LOGIN_SUCCESS: {
-      const { token, username } = action;
+      const {
+        response: { token, username },
+      } = action;
 
       return state
         .setIn([AUTH_REDUCER_KEY, 'token'], token)

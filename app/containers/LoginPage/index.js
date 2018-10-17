@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 import createForm from 'containers/Form';
 import TextField from 'components/TextField';
+import SubmitButton from 'components/SubmitButton';
 import { notEmpty } from 'containers/Form/validators';
-import { API_LOGIN, LOGIN_SUCCESS } from './constants';
+import { LOGIN_SUCCESS } from 'containers/App/constants';
+import { API_LOGIN } from './constants';
 
-const LoginPage = ({ location }) => {
+export const LoginPage = ({ location }) => {
   // @TODO: use isAuthenticated to determine whether to redirect using <Redirect /> component
+  /* istanbul ignore next */
   const { from } = location.state || { from: { pathname: '/' } }; // eslint-disable-line no-unused-vars
 
   const usernameProps = {
@@ -30,7 +33,7 @@ const LoginPage = ({ location }) => {
       <h3>Login</h3>
       <TextField {...usernameProps} />
       <TextField {...passwordProps} />
-      <button type="submit">Login</button>
+      <SubmitButton>Login</SubmitButton>
     </div>
   );
 };

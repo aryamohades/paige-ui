@@ -9,8 +9,8 @@ import {
   SUBMIT_FORM,
   SUBMIT_FORM_ERROR,
   SUBMIT_FORM_SUCCESS,
-  CANCEL_SUBMIT_FORM,
   CLEAR_FORM_ERRORS,
+  CANCEL_SUBMIT_FORM,
 } from './constants';
 
 /**
@@ -63,13 +63,6 @@ export function submitForm(formKey, endpoint, data, onSuccess, onError) {
   };
 }
 
-export function cancelSubmitForm(formKey) {
-  return {
-    type: SUBMIT_FORM,
-    formKey,
-  };
-}
-
 export function submitFormError(formKey, error) {
   return {
     type: SUBMIT_FORM_ERROR,
@@ -86,7 +79,7 @@ export function submitFormSuccess(formKey, response) {
   };
 }
 
-export function cancelFormSubmit(formKey) {
+export function cancelSubmitForm(formKey) {
   return {
     type: CANCEL_SUBMIT_FORM,
     formKey,

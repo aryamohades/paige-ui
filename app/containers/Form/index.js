@@ -10,10 +10,7 @@ import {
   setFormFieldErrors,
   submitForm,
 } from './actions';
-import {
-  makeSelectFormFieldValues,
-  makeSelectIsFormPending,
-} from './selectors';
+import { makeSelectFormFieldValues } from './selectors';
 
 const validateFields = (fields, values) => {
   let isValid = true;
@@ -50,9 +47,9 @@ const createForm = (
   { endpoint, fields, formKey, onError, onSuccess },
 ) => {
   class Component extends React.PureComponent {
-    componentWillMount() {
-      const { init } = this.props;
-
+    constructor(props) {
+      super();
+      const { init } = props;
       init(formKey, fields);
     }
 
@@ -89,7 +86,6 @@ const createForm = (
   };
 
   const mapStateToProps = createStructuredSelector({
-    isPending: makeSelectIsFormPending(formKey),
     values: makeSelectFormFieldValues(formKey),
   });
 

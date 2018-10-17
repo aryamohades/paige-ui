@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppHeader /> should match the snapshot if user is not authenticated 1`] = `
+<div>
+  Profile
+</div>
+`;

@@ -37,7 +37,6 @@ injectGlobal`
 export const buttonStyle = `
   display: inline-flex;
   padding: 7px 24px;
-  margin: 0 0.75em;
   text-decoration: none;
   border-radius: 4px;
   -webkit-font-smoothing: antialiased;

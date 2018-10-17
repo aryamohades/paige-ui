@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppHeader /> should match the snapshot if user is authenticated 1`] = `
+<div>
+  <div
+    className="NavBar-dbmxhD ldvbpF"
+  >
+    <div>
+      <a
+        className="HeaderBrand__StyledLink-Bfuoh ftwZgv"
+        href="/"
+        onClick={[Function]}
+      >
+        warehouse
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/technologies"
+        onClick={[Function]}
+      >
+        <span>
+          Technologies
+        </span>
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/companies"
+        onClick={[Function]}
+      >
+        <span>
+          Companies
+        </span>
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/jobs"
+        onClick={[Function]}
+      >
+        <span>
+          Jobs
+        </span>
+      </a>
+    </div>
+    <div />
+  </div>
+</div>
+`;
+
+exports[`<AppHeader /> should match the snapshot if user is not authenticated 1`] = `
+<div>
+  <div
+    className="NavBar-dbmxhD ldvbpF"
+  >
+    <div>
+      <a
+        className="HeaderBrand__StyledLink-Bfuoh ftwZgv"
+        href="/"
+        onClick={[Function]}
+      >
+        warehouse
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/technologies"
+        onClick={[Function]}
+      >
+        <span>
+          Technologies
+        </span>
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/companies"
+        onClick={[Function]}
+      >
+        <span>
+          Companies
+        </span>
+      </a>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/jobs"
+        onClick={[Function]}
+      >
+        <span>
+          Jobs
+        </span>
+      </a>
+    </div>
+    <div>
+      <a
+        className="itemStyles__StyledLink-fAIfBS gvqALX"
+        href="/login"
+        onClick={[Function]}
+      >
+        <span>
+          Login
+        </span>
+      </a>
+      <a
+        className="itemStyles__ButtonLinkPrimary-iZgrZs hcCsOr"
+        href="/register"
+        onClick={[Function]}
+      >
+        <span>
+          Register
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -1,13 +1,10 @@
-import { LOGIN_SUCCESS } from 'containers/LoginPage/constants';
+import { LOGIN_SUCCESS } from 'containers/App/constants';
 
+export const removeFromStorage = key => localStorage.removeItem(key);
 export const getItemFromStorage = key => localStorage.getItem(key);
 
 export const getObjectFromStorage = key => {
   const o = localStorage.getItem(key);
-
-  if (!o) {
-    return null;
-  }
 
   try {
     return JSON.parse(o);

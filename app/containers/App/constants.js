@@ -9,6 +9,8 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
+/* istanbul ignore file */
+
 export const API_BASE =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000/api'
@@ -21,4 +23,4 @@ export const AUTH_REDUCER_KEY = 'auth';
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
-export const LOGIN_SUCCESS = 'boilerplate/App/LOGIN_SUCCESS';
+export const LOGIN_SUCCESS = 'boilerplate/Login/LOGIN_SUCCESS';

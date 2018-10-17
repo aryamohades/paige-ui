@@ -1,6 +1,15 @@
-import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR } from '../constants';
-
-import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
+import {
+  LOAD_REPOS,
+  LOAD_REPOS_SUCCESS,
+  LOAD_REPOS_ERROR,
+  LOGIN_SUCCESS,
+} from '../constants';
+import {
+  loadRepos,
+  reposLoaded,
+  repoLoadingError,
+  loginSuccess,
+} from '../actions';
 
 describe('App Actions', () => {
   describe('loadRepos', () => {
@@ -38,6 +47,20 @@ describe('App Actions', () => {
       };
 
       expect(repoLoadingError(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('loginSuccess', () => {
+    it('should return the correct type', () => {
+      const fixture = {
+        username: 'test',
+        token: '12345',
+      };
+      const expectedResult = {
+        type: LOGIN_SUCCESS,
+        response: fixture,
+      };
+      expect(loginSuccess(fixture)).toEqual(expectedResult);
     });
   });
 });

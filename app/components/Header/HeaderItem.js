@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledLink, StyledButton, StyledButtonPrimary } from './itemStyles';
+import { StyledLink, ButtonLink, ButtonLinkPrimary } from './itemStyles';
 
 const HeaderItem = ({ primary, text, to, type }) => {
-  let Wrapper = primary ? StyledButtonPrimary : StyledButton;
+  let Wrapper = primary ? ButtonLinkPrimary : ButtonLink;
 
   if (type === 'link') {
     Wrapper = StyledLink;

@@ -6,7 +6,7 @@ import {
   ERRORS_REDUCER_KEY,
   VALUES_REDUCER_KEY,
   RESPONSE_REDUCER_KEY,
-  PENDING_REDUCER_KEY,
+  SUBMITTING_REDUCER_KEY,
   INITIALIZE_FORM,
   SET_FORM_FIELD_VALUE,
   SET_FORM_FIELD_ERRORS,
@@ -55,20 +55,20 @@ function formReducer(state = formInitialState, action) {
         .setIn([formKey, ERRORS_REDUCER_KEY], null);
     }
     case SUBMIT_FORM: {
-      return state.setIn([formKey, PENDING_REDUCER_KEY], true);
+      return state.setIn([formKey, SUBMITTING_REDUCER_KEY], true);
     }
     case SUBMIT_FORM_ERROR: {
       return state
-        .setIn([formKey, PENDING_REDUCER_KEY], false)
+        .setIn([formKey, SUBMITTING_REDUCER_KEY], false)
         .setIn([formKey, ERROR_REDUCER_KEY], error);
     }
     case SUBMIT_FORM_SUCCESS: {
       return state
-        .setIn([formKey, PENDING_REDUCER_KEY], false)
+        .setIn([formKey, SUBMITTING_REDUCER_KEY], false)
         .setIn([formKey, RESPONSE_REDUCER_KEY], response);
     }
     case CANCEL_SUBMIT_FORM: {
-      return state.setIn([formKey, PENDING_REDUCER_KEY], false);
+      return state.setIn([formKey, SUBMITTING_REDUCER_KEY], false);
     }
     default:
       return state;

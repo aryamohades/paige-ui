@@ -6,17 +6,21 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
-import SecretRoute from 'containers/SecretRoute';
+import ProtectedRoute from 'containers/ProtectedRoute';
 import AppHeader from 'containers/Header';
 import HomePage from 'containers/HomePage/Loadable';
 import ProfilePage from 'containers/ProfilePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
+import { makeSelectIsAuthenticated } from './selectors';
 
 const AppWrapper = styled.div`
   flex: 1;
@@ -32,7 +36,7 @@ const PageWrapper = styled.div`
   flex-direction: column;
 `;
 
-const App = () => (
+export const App = ({ isAuthenticated }) => (
   <AppWrapper>
     <Helmet
       titleTemplate="%s - React.js Boilerplate"
@@ -45,7 +49,13 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginPage} />
-        <SecretRoute exact path="/profile" component={ProfilePage} />
+        <ProtectedRoute
+          exact
+          path="/profile"
+          redirect="/login"
+          allow={isAuthenticated}
+          component={ProfilePage}
+        />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </PageWrapper>
@@ -53,4 +63,12 @@ const App = () => (
   </AppWrapper>
 );
 
-export default App;
+App.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: makeSelectIsAuthenticated(),
+});
+
+export default withRouter(connect(mapStateToProps)(App));
