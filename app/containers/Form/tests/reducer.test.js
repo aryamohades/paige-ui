@@ -5,8 +5,19 @@ import {
   initializeForm,
   setFormFieldValue,
   setFormFieldErrors,
+  clearFormErrors,
+  submitForm,
+  submitFormError,
+  submitFormSuccess,
+  cancelSubmitForm,
 } from '../actions';
-import { VALUES_REDUCER_KEY, ERRORS_REDUCER_KEY } from '../constants';
+import {
+  VALUES_REDUCER_KEY,
+  ERRORS_REDUCER_KEY,
+  ERROR_REDUCER_KEY,
+  SUBMITTING_REDUCER_KEY,
+  RESPONSE_REDUCER_KEY,
+} from '../constants';
 
 const testFormKey = 'test';
 const testFormField = 'test';
@@ -70,5 +81,54 @@ describe('formReducer', () => {
     expect(
       formReducer(state, setFormFieldErrors(testFormKey, fixture)),
     ).toEqual(expectedResult);
+  });
+
+  it('should handle the clearFormErrors action correctly', () => {
+    const expectedResult = state
+      .setIn([testFormKey, ERRORS_REDUCER_KEY], null)
+      .setIn([testFormKey, ERROR_REDUCER_KEY], null);
+    expect(formReducer(state, clearFormErrors(testFormKey))).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the submitForm action correctly', () => {
+    const expectedResult = state.setIn(
+      [testFormKey, SUBMITTING_REDUCER_KEY],
+      true,
+    );
+    expect(formReducer(state, submitForm(testFormKey, '/test', {}))).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the submitFormError action correctly', () => {
+    const error = 'error';
+    const expectedResult = state
+      .setIn([testFormKey, ERROR_REDUCER_KEY], error)
+      .setIn([testFormKey, SUBMITTING_REDUCER_KEY], false);
+    expect(formReducer(state, submitFormError(testFormKey, error))).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the submitFormSuccess action correctly', () => {
+    const fixture = { message: 'hello' };
+    const expectedResult = state
+      .setIn([testFormKey, RESPONSE_REDUCER_KEY], fixture)
+      .setIn([testFormKey, SUBMITTING_REDUCER_KEY], false);
+    expect(formReducer(state, submitFormSuccess(testFormKey, fixture))).toEqual(
+      expectedResult,
+    );
+  });
+
+  it('should handle the cancelSubmitForm action correctly', () => {
+    const expectedResult = state.setIn(
+      [testFormKey, SUBMITTING_REDUCER_KEY],
+      false,
+    );
+    expect(formReducer(state, cancelSubmitForm(testFormKey))).toEqual(
+      expectedResult,
+    );
   });
 });
