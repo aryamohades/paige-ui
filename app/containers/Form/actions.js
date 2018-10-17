@@ -29,6 +29,12 @@ export function setFormFieldValue(formKey, formField, value) {
   };
 }
 
+/**
+ * Sets the form field errors
+ *
+ * @param {formKey} form key
+ * @param {errors} form field errors
+ */
 export function setFormFieldErrors(formKey, errors) {
   return {
     type: SET_FORM_FIELD_ERRORS,
@@ -37,6 +43,11 @@ export function setFormFieldErrors(formKey, errors) {
   };
 }
 
+/**
+ * Clear the form field errors
+ *
+ * @param {formKey} form key
+ */
 export function clearFormErrors(formKey) {
   return {
     type: CLEAR_FORM_ERRORS,
@@ -44,6 +55,12 @@ export function clearFormErrors(formKey) {
   };
 }
 
+/**
+ * Initialize the form with form field configuration
+ *
+ * @param {formKey} form key
+ * @param {fields} form fields config
+ */
 export function initializeForm(formKey, fields) {
   return {
     type: INITIALIZE_FORM,
@@ -52,6 +69,16 @@ export function initializeForm(formKey, fields) {
   };
 }
 
+/**
+ * Submit the form, calling the remote endpoint with form data and
+ * dispatching optional onSuccess or onError actions
+ *
+ * @param {formKey} form key
+ * @param {endpoint} the remote endpoint
+ * @param {data} the form data
+ * @param {onSuccess} string name of success action type
+ * @param {onError} string name of error action type
+ */
 export function submitForm(formKey, endpoint, data, onSuccess, onError) {
   return {
     type: SUBMIT_FORM,
@@ -63,6 +90,12 @@ export function submitForm(formKey, endpoint, data, onSuccess, onError) {
   };
 }
 
+/**
+ * Set the form error after unsuccessful form submit
+ *
+ * @param {formKey} form key
+ * @param {error} the error message
+ */
 export function submitFormError(formKey, error) {
   return {
     type: SUBMIT_FORM_ERROR,
@@ -71,6 +104,12 @@ export function submitFormError(formKey, error) {
   };
 }
 
+/**
+ * Set the response data after successful form submit
+ *
+ * @param {formKey} form key
+ * @param {response} response data
+ */
 export function submitFormSuccess(formKey, response) {
   return {
     type: SUBMIT_FORM_SUCCESS,
@@ -79,6 +118,11 @@ export function submitFormSuccess(formKey, response) {
   };
 }
 
+/**
+ * Cancel the form submit, will cancel async submit task with redux-saga
+ *
+ * @param {formKey} form key
+ */
 export function cancelSubmitForm(formKey) {
   return {
     type: CANCEL_SUBMIT_FORM,
