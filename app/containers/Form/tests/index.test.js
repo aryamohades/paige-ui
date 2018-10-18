@@ -40,7 +40,7 @@ describe('createForm', () => {
     expect(mockInit.mock.calls.length).toEqual(1);
   });
 
-  it('should call the submit function when valid form is submitted', () => {
+  it('should call the submit and clearErrors functions when valid form is submitted', () => {
     const mockInit = jest.fn();
     const mockSubmit = jest.fn();
     const mockClearErrors = jest.fn();
@@ -53,6 +53,7 @@ describe('createForm', () => {
       />,
     );
     renderedComponent.find('form').simulate('submit');
+    expect(mockClearErrors.mock.calls.length).toEqual(1);
     expect(mockSubmit.mock.calls.length).toEqual(1);
   });
 
