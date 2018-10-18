@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { fromJS } from 'immutable';
 
 import {
   clearFormErrors,
@@ -11,40 +10,11 @@ import {
   submitForm,
 } from './actions';
 import { makeSelectFormFieldValues } from './selectors';
-
-const validateFields = (fields, values) => {
-  let isValid = true;
-  const errors = {};
-
-  Object.keys(fields).forEach(field => {
-    if (fields[field].validate) {
-      try {
-        if (Array.isArray(fields[field].validate)) {
-          fields[field].validate.forEach(v => {
-            if (fields[field].sendAs) {
-              v(values.get(fields[field].sendAs));
-            } else {
-              v(values.get(field));
-            }
-          });
-        } else if (fields[field].sendAs) {
-          fields[field].validate(values.get(fields[field].sendAs));
-        } else {
-          fields[field].validate(values.get(field));
-        }
-      } catch (e) {
-        errors[field] = e.message;
-        isValid = false;
-      }
-    }
-  });
-
-  return isValid ? null : fromJS(errors);
-};
+import { validateFields } from './validators';
 
 const createForm = (
   WrappedComponent,
-  { endpoint, fields, formKey, onError, onSuccess },
+  { connected = true, endpoint, fields, formKey, onError, onSuccess },
 ) => {
   class Component extends React.PureComponent {
     constructor(props) {
@@ -62,6 +32,7 @@ const createForm = (
     }
 
     onSubmitForm = evt => {
+      /* istanbul ignore next */
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
 
       const { clearErrors, error, submit, values } = this.props;
@@ -85,10 +56,16 @@ const createForm = (
     values: PropTypes.object,
   };
 
+  if (!connected) {
+    return Component;
+  }
+
+  /* istanbul ignore next */
   const mapStateToProps = createStructuredSelector({
     values: makeSelectFormFieldValues(formKey),
   });
 
+  /* istanbul ignore next */
   const mapDispatchToProps = dispatch => ({
     clearErrors: () => dispatch(clearFormErrors(formKey)),
     init: () => dispatch(initializeForm(formKey, fields)),
