@@ -10,7 +10,7 @@ import {
 } from './constants';
 
 /**
- * Login request/response handler
+ * Form submit request/response handler
  */
 export function* submit(formKey, endpoint, data, onSuccess, onError) {
   try {

@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`submit Saga should call onError action if request errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submit Saga should call onSuccess action if request is successful 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submit Saga should call the submitFormError action if the request errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submit Saga should dispatch the submitFormSuccess action if request is successful 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submit Saga should not dispatch onError if no onError action type is passed 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submit Saga should not dispatch onSuccess if no onSuccess action type is passed 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "test",
+      Object {
+        "body": "{\\"message\\":\\"hello\\"}",
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
