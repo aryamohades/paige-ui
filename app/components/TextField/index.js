@@ -9,6 +9,7 @@ import {
 } from 'containers/Form/selectors';
 import { setFormFieldValue } from 'containers/Form/actions';
 import FormFieldError from 'components/FormFieldError';
+import Wrapper from './Wrapper';
 import Input from './Input';
 
 export const TextField = ({
@@ -20,7 +21,7 @@ export const TextField = ({
   type,
   value,
 }) => (
-  <div>
+  <Wrapper>
     {label && <label htmlFor={id}>{label}</label>}
     <Input
       id={id}
@@ -30,7 +31,7 @@ export const TextField = ({
       onChange={onInput}
     />
     {error && <FormFieldError>{error}</FormFieldError>}
-  </div>
+  </Wrapper>
 );
 
 TextField.propTypes = {

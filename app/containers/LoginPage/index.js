@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import createForm from 'containers/Form';
 import TextField from 'components/TextField';
 import SubmitButton from 'components/SubmitButton';
-import { notEmpty } from 'containers/Form/validators';
+import { notEmpty, isEmail } from 'containers/Form/validators';
 import { LOGIN_SUCCESS } from 'containers/App/constants';
 import { API_LOGIN } from './constants';
 
@@ -14,10 +14,10 @@ export const LoginPage = ({ location }) => {
   const { from } = location.state || { from: { pathname: '/' } }; // eslint-disable-line no-unused-vars
 
   const usernameProps = {
-    id: 'login-username-textfield',
+    id: 'login-email-textfield',
     formKey: 'login',
-    formField: 'username',
-    label: 'Username',
+    formField: 'email',
+    label: 'Email',
   };
 
   const passwordProps = {
@@ -47,9 +47,9 @@ export default createForm(LoginPage, {
   onSuccess: LOGIN_SUCCESS,
   formKey: 'login',
   fields: {
-    username: {
+    email: {
       type: String,
-      validate: notEmpty('Username'),
+      validate: [notEmpty('Email'), isEmail],
     },
     password: {
       type: String,

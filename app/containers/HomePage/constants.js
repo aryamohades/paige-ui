@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+import { APP_NAME_NORMALIZED } from 'containers/App/constants';
+
+export const CHANGE_USERNAME = `${APP_NAME_NORMALIZED}/Home/CHANGE_USERNAME`;

@@ -26,7 +26,11 @@ export const localStorageMiddleware = () => next => action => {
   const { type } = result;
 
   if (type === LOGIN_SUCCESS) {
-    const { token, username } = result.response;
+    const {
+      token,
+      user: { username },
+    } = result.response;
+
     setItemInStorage('token', token);
     setItemInStorage('username', username);
   }

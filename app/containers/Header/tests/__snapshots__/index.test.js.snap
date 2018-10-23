@@ -7,37 +7,28 @@ exports[`<AppHeader /> should match the snapshot if user is authenticated 1`] = 
   >
     <div>
       <a
-        className="HeaderBrand__StyledLink-Bfuoh ftwZgv"
+        className="HeaderBrand__StyledLink-Bfuoh IfHBM"
         href="/"
         onClick={[Function]}
       >
-        warehouse
+        paige
       </a>
       <a
         className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/technologies"
+        href="/docs"
         onClick={[Function]}
       >
         <span>
-          Technologies
+          Docs
         </span>
       </a>
       <a
         className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/companies"
+        href="/library"
         onClick={[Function]}
       >
         <span>
-          Companies
-        </span>
-      </a>
-      <a
-        className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/jobs"
-        onClick={[Function]}
-      >
-        <span>
-          Jobs
+          Library
         </span>
       </a>
     </div>
@@ -53,37 +44,28 @@ exports[`<AppHeader /> should match the snapshot if user is not authenticated 1`
   >
     <div>
       <a
-        className="HeaderBrand__StyledLink-Bfuoh ftwZgv"
+        className="HeaderBrand__StyledLink-Bfuoh IfHBM"
         href="/"
         onClick={[Function]}
       >
-        warehouse
+        paige
       </a>
       <a
         className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/technologies"
+        href="/docs"
         onClick={[Function]}
       >
         <span>
-          Technologies
+          Docs
         </span>
       </a>
       <a
         className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/companies"
+        href="/library"
         onClick={[Function]}
       >
         <span>
-          Companies
-        </span>
-      </a>
-      <a
-        className="itemStyles__StyledLink-fAIfBS gvqALX"
-        href="/jobs"
-        onClick={[Function]}
-      >
-        <span>
-          Jobs
+          Library
         </span>
       </a>
     </div>

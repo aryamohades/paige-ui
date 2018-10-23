@@ -17,6 +17,10 @@ export function* submit(formKey, endpoint, data, onSuccess, onError) {
     // Wait for the submit form api call to complete
     const response = yield call(request, endpoint, {
       method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data),
     });
 

@@ -11,16 +11,22 @@
 
 /* istanbul ignore file */
 
+export const APP_NAME = 'Paige';
+export const APP_NAME_NORMALIZED = 'paige';
+export const APP_BRAND = 'paige';
+
+export const META_DESCRIPTION =
+  'Paige extracts data from websites and turns any website into an API';
 export const API_BASE =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000/api'
-    : 'http://localhost:8000/api';
+    ? 'http://localhost:8080/api'
+    : 'http://localhost:8080/api';
 
 // Reducer keys
 export const AUTH_REDUCER_KEY = 'auth';
 
 // Action types
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
-export const LOGIN_SUCCESS = 'boilerplate/Login/LOGIN_SUCCESS';
+export const LOAD_REPOS = `${APP_NAME_NORMALIZED}/App/LOAD_REPOS`;
+export const LOAD_REPOS_SUCCESS = `${APP_NAME_NORMALIZED}/App/LOAD_REPOS_SUCCESS`;
+export const LOAD_REPOS_ERROR = `${APP_NAME_NORMALIZED}/App/LOAD_REPOS_ERROR`;
+export const LOGIN_SUCCESS = `${APP_NAME_NORMALIZED}/Login/LOGIN_SUCCESS`;

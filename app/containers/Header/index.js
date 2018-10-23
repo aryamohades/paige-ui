@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { APP_BRAND } from 'containers/App/constants';
 import { makeSelectIsAuthenticated } from 'containers/App/selectors';
 import Header from 'components/Header';
 
 export const AppHeader = ({ isAuthenticated }) => {
   const left = [
     {
-      text: 'Technologies',
-      to: '/technologies',
-      id: 'technologies',
+      text: 'Docs',
+      to: '/docs',
+      id: 'docs',
       type: 'link',
     },
-    { text: 'Companies', to: '/companies', id: 'companies', type: 'link' },
-    { text: 'Jobs', to: '/jobs', id: 'jobs', type: 'link' },
+    { text: 'Library', to: '/library', id: 'library', type: 'link' },
   ];
 
   const authItems = [];
@@ -37,7 +37,7 @@ export const AppHeader = ({ isAuthenticated }) => {
   ];
 
   const headerProps = {
-    brandText: 'warehouse',
+    brandText: APP_BRAND,
     left,
     right: isAuthenticated ? authItems : anonItems,
   };

@@ -5,6 +5,7 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,6 +22,7 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 import { makeSelectIsAuthenticated } from './selectors';
+import { APP_NAME, META_DESCRIPTION } from './constants';
 
 const AppWrapper = styled.div`
   flex: 1;
@@ -38,17 +40,20 @@ const PageWrapper = styled.div`
 
 export const App = ({ isAuthenticated }) => (
   <AppWrapper>
-    <Helmet
-      titleTemplate="%s - React.js Boilerplate"
-      defaultTitle="React.js Boilerplate"
-    >
-      <meta name="description" content="A React.js Boilerplate application" />
+    <Helmet titleTemplate={`%s - ${APP_NAME}`} defaultTitle={APP_NAME}>
+      <meta name="description" content={META_DESCRIPTION} />
     </Helmet>
     <AppHeader />
     <PageWrapper>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
+        <ProtectedRoute
+          exact
+          path="/login"
+          redirect="/"
+          allow={!isAuthenticated}
+          component={LoginPage}
+        />
         <ProtectedRoute
           exact
           path="/profile"
